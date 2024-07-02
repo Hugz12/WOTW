@@ -19,22 +19,22 @@ export const actions = {
         return redirect(302, "/");
     },
 
-    createPost: async ({ request, locals, cookies }) => {
-        const data = await request.formData();
+    // createPost: async ({ request, locals, cookies }) => {
+    //     const data = await request.formData();
 
-        const title = data.get("title");
-        const content = data.get("content");
+    //     const title = data.get("title");
+    //     const content = data.get("content");
 
-        const sessionToken = cookies.get("session");
+    //     const sessionToken = cookies.get("session");
 
-        const decoded = jwt.verify(sessionToken, "secret");
+    //     const decoded = jwt.verify(sessionToken, "secret");
         
-        await prisma.post.create({
-            data: {
-                title,
-                content,
-                authorId: decoded.id
-            }
-        });
-    }
+    //     await prisma.post.create({
+    //         data: {
+    //             title,
+    //             content,
+    //             authorId: decoded.id
+    //         }
+    //     });
+    // }
 };
