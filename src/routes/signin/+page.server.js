@@ -4,23 +4,16 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-
 export async function load({ cookies }) {
-    const sessionToken = cookies.get('session');
-    return {
-        info: {
-            sessionToken
-        }
-    }
+   if (cookies.session) {
+       throw redirect(302, '/main/ideas');
+   }
 }
-
-
 
 
 export const actions = {
     default: async ({ cookies, request }) => {
         const data = await request.formData();
-
         const email = data.get('email');
         const password = data.get('password');
 
@@ -48,7 +41,7 @@ export const actions = {
                 path: '/'
             });
 
-            return redirect(302, '/');
+            return redirect(302, '/main/ideas');
         }
     }
 };

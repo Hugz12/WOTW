@@ -1,0 +1,102 @@
+.posts-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #a07457;
+    text-align: center;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 100vw;
+}
+
+.post {
+    display: flex;
+    max-width: 500px;
+    width: 75vw;
+    position: relative;
+    flex-direction: column;
+    border: #698474 0.2em solid;   
+    margin: 0.4em auto;
+    padding: 2%;
+}
+
+
+
+
+
+.post-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #a07457;
+}
+
+.post-content, .post-author, .post-location {
+    font-size: 0.9em;
+    color: #444444;
+    padding: 0.25em 0;
+}
+
+
+.post-content > span, .post-author > span, .post-location > span {
+    color: #698474;
+    font-weight: bold;
+}
+
+.post-form > form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.post-form > form > button {
+    border: none;
+    background-color: transparent;
+    color: #a07457;
+    font-size: 1em;
+    margin: 0 0 0 0.5em;
+    cursor: pointer;
+
+}
+
+
+.post-form > form > button > svg{
+    fill: #a07457;
+
+}
+
+
+input[type="date"] {
+    padding: 0.4em 0.8em;
+    border: solid 0.2em #a07457;
+    flex-grow: 1;
+}
+
+
+
+
+.post-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display:flex;
+    flex-direction: row;
+}
+
+.post-buttons > form > button {
+    border: none;
+    background-color: transparent;
+    color: #a07457;
+    font-size: 1em;
+    margin: 0;
+    padding: 0.3em;
+    cursor: pointer;
+}
+
+
+
