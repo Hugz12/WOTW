@@ -39,7 +39,7 @@ services:
     depends_on:
       - wotw-db
     volumes:
-      - .:/app
+      - ./app:/app
 
 volumes:
   db_data:

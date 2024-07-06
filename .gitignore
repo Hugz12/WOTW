@@ -1,21 +1,21 @@
-node_modules
+# Project
+app/node_modules
+app/.vscode
+app/.svelte-kit
+app/build
+
+# Env
+app/.env
+app/.env.*
 
 # Output
 .output
 .vercel
-/.svelte-kit
-/build
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Env
-.env
-.env.*
-!.env.example
-!.env.test
-
 # Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+app/vite.config.js.timestamp-*
+app/vite.config.ts.timestamp-*

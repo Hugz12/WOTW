@@ -5,13 +5,13 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY app/package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Copy app source code excluding files in .dockerignore
-COPY . .
+COPY app .
 
 # Expose the port the app runs in
 EXPOSE 5173
