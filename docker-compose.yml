@@ -1,32 +1,45 @@
 version: '3.8'
 
 networks:
-  my_network:
+  wotw-network:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.18.0.0/16
 
 
 services:
-  db:
-    image: mysql:latest
-    container_name: mysql_wotw
+
+  wotw-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: wotw-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: ig2i
-      MYSQL_PASSWORD: ig2i
+      MYSQL_DATABASE: wotw
+      MYSQL_USER: wotw
+      MYSQL_PASSWORD: wotw
     networks:
-      my_network:
-        ipv4_address: 172.18.0.2
+      - wotw-network
 
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+
+  wotw-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: wotw-app
+    restart: always
+    networks:
+      - wotw-network
+    ports:
+      - "5172:5173"
+    depends_on:
+      - wotw-db
+    volumes:
+      - .:/app
 
 volumes:
   db_data:

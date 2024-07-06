@@ -6,10 +6,10 @@
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
-            "server": "172.18.0.2",
+            "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "database": "mydatabase",
+            "database": "wotw",
             "username": "root",
             "password": "root",
             "name": "WOTW"

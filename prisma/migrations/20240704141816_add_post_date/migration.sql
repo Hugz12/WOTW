@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Post` MODIFY `isLiked` INTEGER NOT NULL DEFAULT 0;

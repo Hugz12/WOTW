@@ -1,0 +1,3 @@
+# Ignoring git files
+.git
+.gitignore

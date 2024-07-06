@@ -12,13 +12,14 @@
     onMount(() => {
 
         const unsubscribe = posts.subscribe(value => {
-            if (value.data)
+            if (value.data){
                 ideas = Object.values(value.data);
                 ideas = ideas.filter(idea => idea.isLiked == 2);
-            console.log(ideas);
-            if (value.error)
+            }
+            if (value.error){
                 fetchError = value.error;
                 if (fetchError) goto('/signin');
+            }
         });
         
         return () => {

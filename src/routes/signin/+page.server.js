@@ -32,7 +32,11 @@ export const actions = {
                 }
             };
         } else {
-            const sessionToken = jwt.sign({ id: user.id },
+            const sessionToken = jwt.sign({ 
+                id: user.id,
+                email: user.email,
+                name: user.name
+             },
                 'secret', {
                 expiresIn: '1h'
             });

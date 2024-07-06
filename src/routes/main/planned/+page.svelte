@@ -15,7 +15,6 @@
             if (value.data)
                 ideas = Object.values(value.data);
                 ideas = ideas.filter(idea => idea.date !== null);
-            console.log(ideas);
             if (value.error)
                 fetchError = value.error;
                 if (fetchError) goto('/signin');

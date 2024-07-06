@@ -11,7 +11,6 @@ export const actions = {
         const postId = data.get('id');
         const date = data.get('date');
         const isoDate = new Date(date).toISOString();
-        console.log(date);
 
         await prisma.post.update({
             where: { id: postId },
