@@ -10,7 +10,7 @@ export async function POST({ request, cookies }) {
     const location = data.location;
 
     const sessionToken = cookies.get("session");
-    const decoded = jwt.verify(sessionToken, "secret");
+    const decoded = jwt.verify(sessionToken, process.env.JWT_SECRET);
 
     const create = await prisma.post.create({
         data: {

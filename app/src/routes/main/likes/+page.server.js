@@ -1,6 +1,3 @@
-import { redirect } from '@sveltejs/kit';
-import jwt from 'jsonwebtoken';
-import { getContext } from 'svelte';
 import prisma from '$lib/db';
 
 export const actions = {

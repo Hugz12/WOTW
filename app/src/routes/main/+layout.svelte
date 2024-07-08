@@ -1,18 +1,14 @@
 <script>
     import '$lib/assets/main.css';
-    import { updateFetchPosts } from '$lib/stores/data.js'
-    import { onDestroy, onMount } from 'svelte';
+    import { updateFetchPosts, posts } from '$lib/stores/data.js'
+    import { onMount } from 'svelte';
     import { setContext } from 'svelte';
 
     export let data;
-    let intervalId;
 
     onMount(() => {
-        intervalId = updateFetchPosts();
-    });
-
-    onDestroy(() => {
-        clearInterval(intervalId);
+        const intervalId = updateFetchPosts();
+        return () => clearInterval(intervalId);
     });
 
     setContext('user', data); 

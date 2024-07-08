@@ -1,11 +1,11 @@
 import { redirect } from '@sveltejs/kit'
-import { PrismaClient } from '@prisma/client';
+import prisma from '$lib/db';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
-const prisma = new PrismaClient();
 
 export async function load({ cookies }) {
-   if (cookies.session) {
+   if (cookies.get('session')) {
        throw redirect(302, '/main/ideas');
    }
 }
@@ -17,35 +17,34 @@ export const actions = {
         const email = data.get('email');
         const password = data.get('password');
 
+
         const user = await prisma.user.findUnique({
             where: {
-                email: email,
-                password: password
+                email: email
             }
         });
 
-        if (!user) {
-            return {
-                status: 401,
-                body: {
-                    message: 'Invalid email or password'
-                }
-            };
-        } else {
-            const sessionToken = jwt.sign({ 
-                id: user.id,
-                email: user.email,
-                name: user.name
-             },
-                'secret', {
-                expiresIn: '1h'
-            });
+        
+        if (user) {
+            const match = await bcrypt.compare(password, user.password);
 
-            cookies.set('session', sessionToken, {
-                path: '/'
-            });
+            if (match) {
+                const sessionToken = jwt.sign({ 
+                    id: user.id,
+                    email: user.email,
+                    name: user.name
+                },
+                    process.env.JWT_SECRET, {
+                    expiresIn: '1h'
+                });
 
-            return redirect(302, '/main/ideas');
+                cookies.set('session', sessionToken, {
+                    path: '/'
+                });
+    
+                return redirect(302, '/main/ideas');
+            }
         }
+        return redirect(302, '/signin');
     }
 };

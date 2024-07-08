@@ -15,7 +15,6 @@
     let title = '';
     let content = '';
     let location = '';
-
  
 
     onMount(() => {

@@ -1,5 +1,3 @@
-version: '3.8'
-
 networks:
   wotw-network:
     driver: bridge
@@ -40,6 +38,8 @@ services:
       - wotw-db
     volumes:
       - ./app:/app
+      - /app/node_modules # This is to prevent the node_modules folder from being overwritten by the volume
+      - /app/.svelte-kit # This is to prevent the .svelte-kit folder from being overwritten by the volume
 
 volumes:
   db_data:

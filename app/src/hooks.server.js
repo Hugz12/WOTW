@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { redirect } from "@sveltejs/kit";
 import jwt from "jsonwebtoken";
-const JWT_SECRET = "your_secret_here"; // Remplacez par votre clé secrète JWT
 
 
 export async function handle({ event, resolve }) {
@@ -12,7 +10,7 @@ export async function handle({ event, resolve }) {
             throw redirect(302, "/signin");
         } else {
             try {
-                const sessionJwt = jwt.verify(sessionCookie, "secret");
+                const sessionJwt = jwt.verify(sessionCookie, process.env.JWT_SECRET);
                 event.locals.user = {
                     id: sessionJwt.id,
                     email: sessionJwt.email,
