@@ -4,7 +4,6 @@
     import { goto } from '$app/navigation';
     import { getContext } from 'svelte';
 
-    let fetchError = false;
     let formError = 0;
     let ideas = [];
     
@@ -14,12 +13,10 @@
 
         const unsubscribe = posts.subscribe(value => {
             if (value.data){
-                ideas = Object.values(value.data);
-                ideas = ideas.filter(idea => idea.isLiked == 1 && idea.date === null);
+                ideas = Object.values(value.data).filter(idea => idea.isLiked == 1 && idea.date === null);
             }
             if (value.error){
-                fetchError = value.error;
-                if (fetchError) goto('/signin');
+                goto('/signin');
             }
         });
         

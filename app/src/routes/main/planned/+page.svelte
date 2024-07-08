@@ -4,7 +4,6 @@
     import { goto } from '$app/navigation';
     import { getContext } from 'svelte';
 
-    let fetchError = false;
     let ideas = [];
     
     const currentUser = getContext('user').user;
@@ -13,11 +12,9 @@
 
         const unsubscribe = posts.subscribe(value => {
             if (value.data)
-                ideas = Object.values(value.data);
-                ideas = ideas.filter(idea => idea.date !== null);
+                ideas = Object.values(value.data).filter(idea => idea.date !== null);
             if (value.error)
-                fetchError = value.error;
-                if (fetchError) goto('/signin');
+                goto('/signin');
         });
         
         return () => {
