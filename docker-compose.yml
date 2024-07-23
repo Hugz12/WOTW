@@ -29,17 +29,17 @@ services:
       context: .
       dockerfile: Dockerfile.app
     container_name: wotw-app
-    restart: always
     networks:
       - wotw-network
     ports:
-      - "5172:5173"
+      - "5173:5173"
     depends_on:
       - wotw-db
     volumes:
       - ./app:/app
       - /app/node_modules # This is to prevent the node_modules folder from being overwritten by the volume
       - /app/.svelte-kit # This is to prevent the .svelte-kit folder from being overwritten by the volume
+      - /app/build # This is to prevent the .svelte-kit folder from being overwritten by the volume
 
 volumes:
   db_data:
