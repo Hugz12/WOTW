@@ -10,9 +10,11 @@ COPY app .
 # Clean install all node modules
 RUN npm ci
 
-# Define environment
+# Define environment (in production you can't use .env file)
 ENV PORT 5173
-ENV ORIGIN http://localhost:5173
+ENV DATABASE_URL "mysql://wotw:wotw@wotw-db:3306/wotw"
+ENV JWT_SECRET="secret"
+ENV SALT_ROUNDS=10
 
 # Build SvelteKit app
 RUN npm run build

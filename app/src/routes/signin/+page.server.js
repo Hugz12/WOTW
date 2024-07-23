@@ -39,8 +39,12 @@ export const actions = {
                 });
 
                 cookies.set('session', sessionToken, {
-                    path: '/'
+                    path: '/',
+                    sameSite: 'none',
+                    secure: true,
+                    httpOnly: true
                 });
+
     
                 return redirect(302, '/main/ideas');
             }

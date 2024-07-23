@@ -20,7 +20,7 @@ services:
       - wotw-network
 
     ports:
-      - "3306:3306"
+      - "3300:3306"
     volumes:
       - db_data:/var/lib/mysql
 
@@ -28,14 +28,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.app
+      #dockerfile: Dockerfile.prod
     container_name: wotw-app
     networks:
       - wotw-network
     ports:
-      - "5173:5173"
+      - "5000:5173"
     depends_on:
       - wotw-db
-    volumes:
+    volumes: # Delete in production environment
       - ./app:/app
       - /app/node_modules # This is to prevent the node_modules folder from being overwritten by the volume
       - /app/.svelte-kit # This is to prevent the .svelte-kit folder from being overwritten by the volume
