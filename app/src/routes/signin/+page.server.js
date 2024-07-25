@@ -2,6 +2,7 @@ import { redirect } from '@sveltejs/kit'
 import prisma from '$lib/db';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import { JWT_SECRET } from '$env/static/private';
 
 
 export async function load({ cookies }) {
@@ -34,7 +35,7 @@ export const actions = {
                     email: user.email,
                     name: user.name
                 },
-                    process.env.JWT_SECRET, {
+                    JWT_SECRET, {
                     expiresIn: '1h'
                 });
 

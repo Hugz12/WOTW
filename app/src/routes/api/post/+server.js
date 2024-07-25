@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import prisma from '$lib/db';
 import jwt from 'jsonwebtoken';
-
+import { JWT_SECRET } from '$env/static/private';
 
 export async function POST({ request, cookies }) {
 	const data = await request.json();
@@ -10,7 +10,7 @@ export async function POST({ request, cookies }) {
     const location = data.location;
 
     const sessionToken = cookies.get("session");
-    const decoded = jwt.verify(sessionToken, process.env.JWT_SECRET);
+    const decoded = jwt.verify(sessionToken, JWT_SECRET);
 
     const create = await prisma.post.create({
         data: {
