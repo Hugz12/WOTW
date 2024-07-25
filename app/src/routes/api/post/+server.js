@@ -41,7 +41,7 @@ export async function POST({ request, cookies }) {
 export async function GET({ request, cookies }) {
     try {
         const sessionToken = cookies.get("session");
-        const decoded = jwt.verify(sessionToken, process.env.JWT_SECRET);
+        const decoded = jwt.verify(sessionToken, JWT_SECRET);
     
         const posts = await prisma.post.findMany({
             include: {
