@@ -4,7 +4,7 @@ import { JWT_SECRET } from "$env/static/private";
 
 
 export async function handle({ event, resolve }) {
-    if (event.url.pathname.startsWith("/main")) {
+    if (!event.url.pathname.startsWith("/signin")) {
         const sessionCookie = event.cookies.get("session");
         if (!sessionCookie) {
             throw redirect(302, "/signin");

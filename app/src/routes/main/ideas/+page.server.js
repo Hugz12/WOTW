@@ -1,14 +1,6 @@
-import { redirect } from '@sveltejs/kit';
 import prisma from '$lib/db';
 
 export const actions = {
-
-
-    logout: async ({ cookies }) => {
-        cookies.delete("session", { path: "/" });
-        return redirect(302, "/");
-    },
-
     delete: async ({ request, locals }) => {
         const data = await request.formData();
         const postId = data.get('id');
@@ -19,9 +11,7 @@ export const actions = {
 
         if(post.authorId === locals.user.id && post.isLiked === 0) {
             await prisma.post.delete({
-                where: {
-                    id: postId
-                }
+                where: { id: postId }
             });
         }
 

@@ -127,10 +127,3 @@
         </div>
     {/each}
 </div>
-
-
-
-<!-- Leave the app -->
-<form action="?/logout" method="POST">
-<button type="submit">Logout</button>
-</form>
